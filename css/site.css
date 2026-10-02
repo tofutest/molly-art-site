@@ -172,13 +172,12 @@ footer {
     border-top: 1px solid var(--color-border);
 }
 
-/* --- Flying pig easter egg --- */
+/* --- Flying animal easter egg --- */
 
-#flying-pig {
+.flying-animal {
     position: fixed;
     top: 0;
     left: 0;
-    display: none;
     font-size: 3rem;
     line-height: 1;
     pointer-events: none;
@@ -188,12 +187,12 @@ footer {
 
 /* Flap lives on the inner element so it animates its own `transform`
    independently of the outer element's JS-driven position/orientation transform. */
-#flying-pig .pig-face {
+.flying-animal .animal-face {
     display: inline-block;
-    animation: pig-flap 0.5s ease-in-out infinite alternate;
+    animation: animal-flap 0.5s ease-in-out infinite alternate;
 }
 
-@keyframes pig-flap {
+@keyframes animal-flap {
     from {
         transform: scaleY(1);
     }
@@ -203,7 +202,7 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #flying-pig .pig-face {
+    .flying-animal .animal-face {
         animation: none;
     }
 }
