@@ -23,13 +23,31 @@
         return randomBetween(window.innerWidth * 0.1, window.innerWidth * 0.9);
     }
 
+    // Shuffle-bag: hands out every animal once per cycle before any repeat,
+    // so the mix feels even instead of letting independent random draws
+    // clump the same couple of animals together by chance.
+    var animalBag = [];
+
+    function nextAnimal() {
+        if (animalBag.length === 0) {
+            animalBag = ANIMALS.slice();
+            for (var i = animalBag.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var tmp = animalBag[i];
+                animalBag[i] = animalBag[j];
+                animalBag[j] = tmp;
+            }
+        }
+        return animalBag.pop();
+    }
+
     function createAnimal() {
         var el = document.createElement('div');
         el.className = 'flying-animal';
         el.setAttribute('aria-hidden', 'true');
         var face = document.createElement('span');
         face.className = 'animal-face';
-        face.textContent = ANIMALS[Math.floor(Math.random() * ANIMALS.length)];
+        face.textContent = nextAnimal();
         el.appendChild(face);
         document.body.appendChild(el);
         return el;
