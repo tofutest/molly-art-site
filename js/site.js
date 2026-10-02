@@ -3,15 +3,24 @@
     if (!document.querySelector('.gallery')) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    var ANIMALS = ['🐖', '🦆', '🐄']; // pig, duck, cow
+    // pig, duck, cow, chicken, turtle, elephant, snail
+    var ANIMALS = ['🐖', '🦆', '🐄', '🐔', '🐢', '🐘', '🐌'];
+
+    // Most flights are left/right; a minority go top-to-bottom instead.
+    var VERTICAL_CHANCE = 0.35;
 
     function randomBetween(min, max) {
         return Math.random() * (max - min) + min;
     }
 
-    // Keep animals within the upper portion of the viewport, clear of the footer.
+    // For horizontal flights: keep clear of the footer.
     function randomY() {
         return randomBetween(window.innerHeight * 0.1, window.innerHeight * 0.6);
+    }
+
+    // For vertical flights: keep clear of the very edges.
+    function randomX() {
+        return randomBetween(window.innerWidth * 0.1, window.innerWidth * 0.9);
     }
 
     function createAnimal() {
@@ -26,23 +35,33 @@
         return el;
     }
 
-    function flyOnce(el, direction) {
-        var vw = window.innerWidth;
-        var fromX = direction === 'right' ? -120 : vw + 120;
-        var toX = direction === 'right' ? vw + 120 : -120;
-        var facing = direction === 'right' ? 1 : -1;
+    // axis: 'x' (left/right) or 'y' (top/bottom). direction: 1 = forward, -1 = backward.
+    function flyOnce(el, axis, direction) {
         var duration = randomBetween(8000, 14000);
+        var keyframes;
 
-        el.style.top = randomY() + 'px';
-
-        var anim = el.animate(
-            [
+        if (axis === 'x') {
+            var vw = window.innerWidth;
+            var fromX = direction === 1 ? -120 : vw + 120;
+            var toX = direction === 1 ? vw + 120 : -120;
+            var facing = direction; // flip to face the direction of travel
+            el.style.top = randomY() + 'px';
+            keyframes = [
                 { transform: 'translateX(' + fromX + 'px) scaleX(' + facing + ')' },
                 { transform: 'translateX(' + toX + 'px) scaleX(' + facing + ')' }
-            ],
-            { duration: duration, easing: 'ease-in-out', fill: 'forwards' }
-        );
+            ];
+        } else {
+            var vh = window.innerHeight;
+            var fromY = direction === 1 ? -120 : vh + 120;
+            var toY = direction === 1 ? vh + 120 : -120;
+            el.style.left = randomX() + 'px';
+            keyframes = [
+                { transform: 'translateY(' + fromY + 'px)' },
+                { transform: 'translateY(' + toY + 'px)' }
+            ];
+        }
 
+        var anim = el.animate(keyframes, { duration: duration, easing: 'ease-in-out', fill: 'forwards' });
         return anim.finished;
     }
 
@@ -56,9 +75,10 @@
     // animals can be airborne at once now that they launch every few seconds.
     function spawnRoundTrip() {
         var el = createAnimal();
-        flyOnce(el, 'right')
+        var axis = Math.random() < VERTICAL_CHANCE ? 'y' : 'x';
+        flyOnce(el, axis, 1)
             .then(function () { return wait(randomBetween(1000, 2000)); })
-            .then(function () { return flyOnce(el, 'left'); })
+            .then(function () { return flyOnce(el, axis, -1); })
             .then(function () { el.remove(); });
     }
 
