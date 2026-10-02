@@ -171,3 +171,39 @@ footer {
     color: #777;
     border-top: 1px solid var(--color-border);
 }
+
+/* --- Flying pig easter egg --- */
+
+#flying-pig {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    font-size: 3rem;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 9999;
+}
+
+/* Flap lives on the inner element so it animates its own `transform`
+   independently of the outer element's JS-driven position/orientation transform. */
+#flying-pig .pig-face {
+    display: inline-block;
+    animation: pig-flap 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pig-flap {
+    from {
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0.85);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #flying-pig .pig-face {
+        animation: none;
+    }
+}
