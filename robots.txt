@@ -1,0 +1,5 @@
+# Site is still a work-in-progress rebuild (placeholder content, fake prices, disabled
+# purchase buttons) — blocking crawling until it's ready for real visitors.
+# REMOVE THIS FILE once the site is ready to go live for real.
+User-agent: *
+Disallow: /
