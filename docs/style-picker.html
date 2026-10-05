@@ -6,7 +6,7 @@
 <title>Style Picker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,500;0,600;1,500&family=Cormorant+Garamond:wght@500;600&family=EB+Garamond:wght@500;600&family=Libre+Baskerville:wght@400;700&family=Josefin+Sans:wght@500;600&family=Archivo:wght@500;700&family=Sora:wght@500;700&family=Spectral:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@500;600&family=Cormorant+Garamond:wght@500;600&family=EB+Garamond:wght@500;600&family=Libre+Baskerville:wght@400;700&family=Josefin+Sans:wght@500;600&family=Archivo:wght@500;700&family=Sora:wght@500;700&family=Spectral:wght@500;600&family=Quicksand:wght@500;700&family=Merriweather:wght@400;700&family=Source+Serif+4:wght@500;600&family=Crimson+Text:wght@400;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Serif+Display&family=Bitter:wght@500;700&family=Work+Sans:wght@500;700&family=Poppins:wght@500;600&family=Nunito:wght@600;700&family=Cabin:wght@500;600&family=Zilla+Slab:wght@500;700&family=Abril+Fatface&display=swap" rel="stylesheet">
 <style>
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
@@ -15,43 +15,43 @@
     background:var(--bg, #FAF9F6);
     color:var(--ink, #1C1A17);
     font-family: var(--font-body, -apple-system, "Segoe UI", sans-serif);
-    transition: background 0.25s ease, color 0.25s ease;
+    transition: background 0.2s ease, color 0.2s ease;
   }
 
   /* ---------- Picker bar ---------- */
   .picker-bar{
     position:sticky; top:0; z-index:100;
-    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
     background:#1C1A17; color:#F2F0EA;
-    padding:14px 20px;
     font-family:-apple-system,"Segoe UI",sans-serif;
-    font-size:0.92rem;
+    font-size:0.9rem;
+    padding:10px 20px;
   }
-  .picker-bar strong{ font-weight:700; }
-  .picker-bar select{
-    font-family:inherit; font-size:0.92rem; padding:7px 10px;
+  .picker-row{ display:flex; align-items:center; gap:12px; padding:6px 0; flex-wrap:wrap; }
+  .picker-row .label{ font-weight:700; width:46px; flex-shrink:0; }
+  .picker-row select{
+    font-family:inherit; font-size:0.9rem; padding:6px 9px; min-width:220px;
     border-radius:3px; border:1px solid #514C42; background:#2A2621; color:#F2F0EA;
   }
-  .picker-bar button{
-    font-family:inherit; font-size:1.1rem; width:32px; height:32px;
+  .picker-row button{
+    font-family:inherit; font-size:1.05rem; width:30px; height:30px;
     border-radius:3px; border:1px solid #514C42; background:#2A2621; color:#F2F0EA; cursor:pointer;
   }
-  .picker-bar button:hover{ background:#3a362f; }
-  .picker-bar .count{ color:#B8B1A3; margin-left:auto; }
+  .picker-row button:hover{ background:#3a362f; }
+  .picker-row .count{ color:#B8B1A3; margin-left:auto; font-size:0.82rem; }
 
-  /* ---------- Preview content (mirrors the real site, themed) ---------- */
+  /* ---------- Preview content (mirrors the real site) ---------- */
   .preview-header{
     display:flex; align-items:center; justify-content:space-between;
     max-width:1000px; margin-inline:auto; padding:22px 24px;
     border-bottom:1px solid var(--border, #E4E0D8);
   }
-  .preview-brand{ font-family:var(--font-display); font-weight:700; font-size:1.15rem; }
+  .preview-brand{ font-family:var(--font-display); font-weight:var(--display-weight,700); font-size:1.15rem; }
   .preview-nav{ display:flex; gap:26px; font-size:0.95rem; }
 
   main{ max-width:1000px; margin-inline:auto; padding:48px 24px 64px; }
 
   .hero{
-    width:100%; aspect-ratio:21/9; border-radius:3px;
+    width:100%; aspect-ratio:21/9; border-radius:2px;
     background:var(--accent-gradient);
     display:flex; align-items:flex-end; padding:16px;
     margin-bottom:28px;
@@ -62,16 +62,16 @@
   }
 
   h1{ font-family:var(--font-display); font-size:2.1rem; margin:0 0 12px; font-weight:var(--display-weight,700); }
-  .lede{ max-width:60ch; color:var(--ink-soft, #4A463F); margin:0 0 28px; font-size:1.02rem; }
+  .lede{ max-width:60ch; color:var(--ink-soft, #4A463F); margin:0 0 28px; font-size:1.02rem; font-family:var(--font-body); }
 
   .btn{
     display:inline-block; font-family:-apple-system,sans-serif; font-size:0.95rem;
-    padding:13px 26px; border-radius:var(--radius,2px); text-decoration:none;
+    padding:13px 26px; border-radius:2px; text-decoration:none;
     background:var(--accent); color:var(--accent-ink,#fff); border:1px solid var(--accent);
   }
 
   .swatch-row{ display:flex; gap:16px; margin:36px 0; }
-  .swatch{ flex:1; aspect-ratio:1/1; border-radius:var(--radius,2px); background:var(--accent-gradient); opacity:0.88; }
+  .swatch{ flex:1; aspect-ratio:1/1; border-radius:2px; background:var(--accent-gradient); opacity:0.88; }
 
   .preview-footer{ text-align:center; margin-top:48px; }
   .preview-footer .dot{
@@ -80,22 +80,36 @@
   }
 
   .theme-note{
-    max-width:1000px; margin:0 auto 0; padding:0 24px 8px;
-    font-family:-apple-system,sans-serif; font-size:0.85rem; color:var(--ink-soft, #4A463F);
+    max-width:1000px; margin:0 auto; padding:10px 24px 0;
+    font-family:-apple-system,sans-serif; font-size:0.82rem; color:var(--ink-soft, #4A463F);
+    border-bottom:1px solid var(--border,#E4E0D8); padding-bottom:10px;
   }
+  .theme-note div{ margin-bottom:3px; }
 </style>
 </head>
 <body>
 
 <div class="picker-bar">
-  <strong>Style Picker</strong>
-  <button id="prev" aria-label="Previous style">‹</button>
-  <select id="styleSelect"></select>
-  <button id="next" aria-label="Next style">›</button>
-  <span class="count" id="count"></span>
+  <div class="picker-row">
+    <span class="label">Font</span>
+    <button id="fontPrev" aria-label="Previous font">‹</button>
+    <select id="fontSelect"></select>
+    <button id="fontNext" aria-label="Next font">›</button>
+    <span class="count" id="fontCount"></span>
+  </div>
+  <div class="picker-row">
+    <span class="label">Color</span>
+    <button id="colorPrev" aria-label="Previous color">‹</button>
+    <select id="colorSelect"></select>
+    <button id="colorNext" aria-label="Next color">›</button>
+    <span class="count" id="colorCount"></span>
+  </div>
 </div>
 
-<p class="theme-note" id="themeNote"></p>
+<div class="theme-note">
+  <div id="fontNote"></div>
+  <div id="colorNote"></div>
+</div>
 
 <header class="preview-header">
   <div class="preview-brand">Molly Kelly</div>
@@ -107,7 +121,7 @@
   <h1>Original paintings &amp; prints</h1>
   <p class="lede">
     Quiet landscapes and still life, worked in oil, watercolor, and mixed media — a sample
-    paragraph so you can judge how body text actually reads in this style, not just headlines.
+    paragraph so you can judge how body text actually reads, not just headlines.
   </p>
   <a class="btn" href="#">Explore available work</a>
   <div class="swatch-row">
@@ -121,115 +135,113 @@
 </main>
 
 <script>
-  const themes = [
-    { id:"warm-gallery", name:"Warm Gallery", note:"Today's default — warm paper, near-black ink, classic serif.",
-      vars:{ "--bg":"#FAF9F6","--ink":"#1C1A17","--ink-soft":"#4A463F","--border":"#E4E0D8",
-        "--accent":"#1C1A17","--accent-ink":"#FAF9F6",
-        "--accent-gradient":"linear-gradient(135deg,#e8d9c3,#c9a789,#a07a7f,#5c6a86,#2b3147)",
-        "--font-display":"Georgia, serif","--font-body":"-apple-system,sans-serif" } },
+  const fonts = [
+    { name:"Georgia (classic serif)", vars:{ "--font-display":"Georgia, serif", "--font-body":"Georgia, serif", "--display-weight":"700" } },
+    { name:"System Sans (native)", vars:{ "--font-display":"-apple-system,'Segoe UI',sans-serif", "--font-body":"-apple-system,'Segoe UI',sans-serif", "--display-weight":"700" } },
+    { name:"Playfair Display", vars:{ "--font-display":"'Playfair Display',serif", "--font-body":"'Playfair Display',serif", "--display-weight":"900" } },
+    { name:"Lora", vars:{ "--font-display":"Lora,serif", "--font-body":"Lora,serif", "--display-weight":"600" } },
+    { name:"Cormorant Garamond", vars:{ "--font-display":"'Cormorant Garamond',serif", "--font-body":"'Cormorant Garamond',serif", "--display-weight":"600" } },
+    { name:"EB Garamond", vars:{ "--font-display":"'EB Garamond',serif", "--font-body":"'EB Garamond',serif", "--display-weight":"600" } },
+    { name:"Libre Baskerville", vars:{ "--font-display":"'Libre Baskerville',serif", "--font-body":"'Libre Baskerville',serif", "--display-weight":"700" } },
+    { name:"Josefin Sans", vars:{ "--font-display":"'Josefin Sans',sans-serif", "--font-body":"'Josefin Sans',sans-serif", "--display-weight":"600" } },
+    { name:"Archivo", vars:{ "--font-display":"Archivo,sans-serif", "--font-body":"Archivo,sans-serif", "--display-weight":"700" } },
+    { name:"Sora", vars:{ "--font-display":"Sora,sans-serif", "--font-body":"Sora,sans-serif", "--display-weight":"700" } },
+    { name:"Spectral", vars:{ "--font-display":"Spectral,serif", "--font-body":"Spectral,serif", "--display-weight":"600" } },
+    { name:"Quicksand", vars:{ "--font-display":"Quicksand,sans-serif", "--font-body":"Quicksand,sans-serif", "--display-weight":"700" } },
+    { name:"Merriweather", vars:{ "--font-display":"Merriweather,serif", "--font-body":"Merriweather,serif", "--display-weight":"700" } },
+    { name:"Source Serif 4", vars:{ "--font-display":"'Source Serif 4',serif", "--font-body":"'Source Serif 4',serif", "--display-weight":"600" } },
+    { name:"Crimson Text", vars:{ "--font-display":"'Crimson Text',serif", "--font-body":"'Crimson Text',serif", "--display-weight":"600" } },
+    { name:"Fraunces", vars:{ "--font-display":"Fraunces,serif", "--font-body":"Fraunces,serif", "--display-weight":"600" } },
+    { name:"DM Serif Display", vars:{ "--font-display":"'DM Serif Display',serif", "--font-body":"'DM Serif Display',serif", "--display-weight":"400" } },
+    { name:"Bitter", vars:{ "--font-display":"Bitter,serif", "--font-body":"Bitter,serif", "--display-weight":"700" } },
+    { name:"Work Sans", vars:{ "--font-display":"'Work Sans',sans-serif", "--font-body":"'Work Sans',sans-serif", "--display-weight":"700" } },
+    { name:"Poppins", vars:{ "--font-display":"Poppins,sans-serif", "--font-body":"Poppins,sans-serif", "--display-weight":"600" } },
+    { name:"Nunito", vars:{ "--font-display":"Nunito,sans-serif", "--font-body":"Nunito,sans-serif", "--display-weight":"700" } },
+    { name:"Cabin", vars:{ "--font-display":"Cabin,sans-serif", "--font-body":"Cabin,sans-serif", "--display-weight":"600" } },
+    { name:"Zilla Slab", vars:{ "--font-display":"'Zilla Slab',serif", "--font-body":"'Zilla Slab',serif", "--display-weight":"700" } },
+    { name:"Abril Fatface", vars:{ "--font-display":"'Abril Fatface',serif", "--font-body":"Georgia,serif", "--display-weight":"400" } }
+  ];
 
-    { id:"modern-minimal", name:"Modern Minimal", note:"Pure white, all sans, no color accent at all — just black and whitespace.",
-      vars:{ "--bg":"#FFFFFF","--ink":"#111111","--ink-soft":"#555555","--border":"#DDDDDD",
-        "--accent":"#111111","--accent-ink":"#FFFFFF",
-        "--accent-gradient":"linear-gradient(135deg,#dddddd,#aaaaaa,#777777,#444444,#111111)",
-        "--font-display":"-apple-system,sans-serif","--font-body":"-apple-system,sans-serif","--display-weight":"700" } },
-
-    { id:"soft-pastel", name:"Soft Pastel Studio", note:"Blush-tinted background, rounded friendly type.",
-      vars:{ "--bg":"#FBF1F2","--ink":"#3A2E30","--ink-soft":"#7A6468","--border":"#F0D9DC",
-        "--accent":"#D98FA0","--accent-ink":"#FFFFFF",
-        "--accent-gradient":"linear-gradient(135deg,#f6d9df,#e8b4c2,#d98fa0,#b4e0d9,#8fc6bd)",
-        "--font-display":"Quicksand, sans-serif","--font-body":"Quicksand, sans-serif","--radius":"8px","--display-weight":"700" } },
-
-    { id:"bold-editorial", name:"Bold Editorial", note:"Stark black/white, oversized serif headlines, magazine feel.",
-      vars:{ "--bg":"#FFFFFF","--ink":"#0A0A0A","--ink-soft":"#444444","--border":"#CCCCCC",
-        "--accent":"#C8102E","--accent-ink":"#FFFFFF",
-        "--accent-gradient":"linear-gradient(135deg,#0a0a0a,#3a3a3a,#c8102e,#8a0a1e,#0a0a0a)",
-        "--font-display":"'Playfair Display', serif","--font-body":"-apple-system,sans-serif","--display-weight":"900" } },
-
-    { id:"earth-clay", name:"Earth &amp; Clay", note:"Terracotta and sand, humanist serif, organic warmth.",
-      vars:{ "--bg":"#F6EEE4","--ink":"#3D2B1F","--ink-soft":"#6E5742","--border":"#E3D2BC",
-        "--accent":"#B5602F","--accent-ink":"#FFF8F0",
-        "--accent-gradient":"linear-gradient(135deg,#e8c9a3,#cf9b6c,#b5602f,#8a4522,#5c2d16)",
-        "--font-display":"Lora, serif","--font-body":"Lora, serif","--display-weight":"600" } },
-
-    { id:"midnight-gallery", name:"Midnight Gallery", note:"Dark mode — near-black ground, brass accent, moody and elegant.",
-      vars:{ "--bg":"#15130F","--ink":"#EDE6D6","--ink-soft":"#A99E89","--border":"#3A352B",
-        "--accent":"#C9A24B","--accent-ink":"#15130F",
-        "--accent-gradient":"linear-gradient(135deg,#3a3326,#6b5a34,#c9a24b,#8a7336,#2a2518)",
-        "--font-display":"'Cormorant Garamond', serif","--font-body":"-apple-system,sans-serif","--display-weight":"600" } },
-
-    { id:"botanical-sage", name:"Botanical &amp; Sage", note:"Sage green and cream, calm and nature-leaning.",
-      vars:{ "--bg":"#F3F3EA","--ink":"#30382F","--ink-soft":"#5F6B5A","--border":"#D9DCC9",
-        "--accent":"#6E8C5F","--accent-ink":"#FFFFFF",
-        "--accent-gradient":"linear-gradient(135deg,#d4ddc3,#a9bd92,#6e8c5f,#48603d,#2c3b24)",
-        "--font-display":"'EB Garamond', serif","--font-body":"'EB Garamond', serif","--display-weight":"600" } },
-
-    { id:"ink-parchment", name:"Ink &amp; Parchment", note:"Aged paper, classic book typography, literary and traditional.",
-      vars:{ "--bg":"#EFE6D2","--ink":"#2E2416","--ink-soft":"#5C4F38","--border":"#D6C7A3",
-        "--accent":"#5C4A2E","--accent-ink":"#EFE6D2",
-        "--accent-gradient":"linear-gradient(135deg,#d6c7a3,#b3a076,#8a7650,#5c4a2e,#3a2f1d)",
-        "--font-display":"'Libre Baskerville', serif","--font-body":"'Libre Baskerville', serif","--display-weight":"700" } },
-
-    { id:"coastal-watercolor", name:"Coastal Watercolor", note:"Soft blue washes, airy sans — nods to her watercolor work.",
-      vars:{ "--bg":"#F0F6F6","--ink":"#213235","--ink-soft":"#55696D","--border":"#D2E4E4",
-        "--accent":"#4C8C96","--accent-ink":"#FFFFFF",
-        "--accent-gradient":"linear-gradient(135deg,#cfe6e6,#9cc9cc,#4c8c96,#2f6670,#1c454d)",
-        "--font-display":"'Josefin Sans', sans-serif","--font-body":"'Josefin Sans', sans-serif","--display-weight":"600" } },
-
-    { id:"monochrome-charcoal", name:"Monochrome Charcoal", note:"Pure grayscale, zero color — typography and spacing carry everything.",
-      vars:{ "--bg":"#F4F4F4","--ink":"#1A1A1A","--ink-soft":"#5A5A5A","--border":"#CFCFCF",
-        "--accent":"#1A1A1A","--accent-ink":"#F4F4F4",
-        "--accent-gradient":"linear-gradient(135deg,#dddddd,#aaaaaa,#777777,#444444,#1a1a1a)",
-        "--font-display":"Archivo, sans-serif","--font-body":"Archivo, sans-serif","--display-weight":"700" } },
-
-    { id:"vibrant-contemporary", name:"Vibrant Contemporary", note:"Bright white, one saturated accent, confident geometric sans.",
-      vars:{ "--bg":"#FFFFFF","--ink":"#161616","--ink-soft":"#4D4D4D","--border":"#E2E2E2",
-        "--accent":"#3453DB","--accent-ink":"#FFFFFF",
-        "--accent-gradient":"linear-gradient(135deg,#9db1f2,#5f7fe8,#3453db,#2338a0,#141f5e)",
-        "--font-display":"Sora, sans-serif","--font-body":"Sora, sans-serif","--display-weight":"700" } },
-
-    { id:"rose-ink", name:"Rose &amp; Ink", note:"Dusty rose accent on cream, soft but sophisticated serif.",
-      vars:{ "--bg":"#FAF2EF","--ink":"#352526","--ink-soft":"#6B5355","--border":"#EAD5D2",
-        "--accent":"#A85D63","--accent-ink":"#FFFFFF",
-        "--accent-gradient":"linear-gradient(135deg,#eccbc9,#d79fa0,#a85d63,#7c3f45,#4a2225)",
-        "--font-display":"Spectral, serif","--font-body":"Spectral, serif","--display-weight":"600" } }
+  const colors = [
+    { name:"Warm Gallery", vars:{ "--bg":"#FAF9F6","--ink":"#1C1A17","--ink-soft":"#4A463F","--border":"#E4E0D8","--accent":"#1C1A17","--accent-ink":"#FAF9F6","--accent-gradient":"linear-gradient(135deg,#e8d9c3,#c9a789,#a07a7f,#5c6a86,#2b3147)" } },
+    { name:"Modern Minimal", vars:{ "--bg":"#FFFFFF","--ink":"#111111","--ink-soft":"#555555","--border":"#DDDDDD","--accent":"#111111","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#dddddd,#aaaaaa,#777777,#444444,#111111)" } },
+    { name:"Soft Pastel Studio", vars:{ "--bg":"#FBF1F2","--ink":"#3A2E30","--ink-soft":"#7A6468","--border":"#F0D9DC","--accent":"#D98FA0","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#f6d9df,#e8b4c2,#d98fa0,#b4e0d9,#8fc6bd)" } },
+    { name:"Bold Editorial", vars:{ "--bg":"#FFFFFF","--ink":"#0A0A0A","--ink-soft":"#444444","--border":"#CCCCCC","--accent":"#C8102E","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#0a0a0a,#3a3a3a,#c8102e,#8a0a1e,#0a0a0a)" } },
+    { name:"Earth & Clay", vars:{ "--bg":"#F6EEE4","--ink":"#3D2B1F","--ink-soft":"#6E5742","--border":"#E3D2BC","--accent":"#B5602F","--accent-ink":"#FFF8F0","--accent-gradient":"linear-gradient(135deg,#e8c9a3,#cf9b6c,#b5602f,#8a4522,#5c2d16)" } },
+    { name:"Midnight Gallery", vars:{ "--bg":"#15130F","--ink":"#EDE6D6","--ink-soft":"#A99E89","--border":"#3A352B","--accent":"#C9A24B","--accent-ink":"#15130F","--accent-gradient":"linear-gradient(135deg,#3a3326,#6b5a34,#c9a24b,#8a7336,#2a2518)" } },
+    { name:"Botanical & Sage", vars:{ "--bg":"#F3F3EA","--ink":"#30382F","--ink-soft":"#5F6B5A","--border":"#D9DCC9","--accent":"#6E8C5F","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#d4ddc3,#a9bd92,#6e8c5f,#48603d,#2c3b24)" } },
+    { name:"Ink & Parchment", vars:{ "--bg":"#EFE6D2","--ink":"#2E2416","--ink-soft":"#5C4F38","--border":"#D6C7A3","--accent":"#5C4A2E","--accent-ink":"#EFE6D2","--accent-gradient":"linear-gradient(135deg,#d6c7a3,#b3a076,#8a7650,#5c4a2e,#3a2f1d)" } },
+    { name:"Coastal Watercolor", vars:{ "--bg":"#F0F6F6","--ink":"#213235","--ink-soft":"#55696D","--border":"#D2E4E4","--accent":"#4C8C96","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#cfe6e6,#9cc9cc,#4c8c96,#2f6670,#1c454d)" } },
+    { name:"Monochrome Charcoal", vars:{ "--bg":"#F4F4F4","--ink":"#1A1A1A","--ink-soft":"#5A5A5A","--border":"#CFCFCF","--accent":"#1A1A1A","--accent-ink":"#F4F4F4","--accent-gradient":"linear-gradient(135deg,#dddddd,#aaaaaa,#777777,#444444,#1a1a1a)" } },
+    { name:"Vibrant Contemporary", vars:{ "--bg":"#FFFFFF","--ink":"#161616","--ink-soft":"#4D4D4D","--border":"#E2E2E2","--accent":"#3453DB","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#9db1f2,#5f7fe8,#3453db,#2338a0,#141f5e)" } },
+    { name:"Rose & Ink", vars:{ "--bg":"#FAF2EF","--ink":"#352526","--ink-soft":"#6B5355","--border":"#EAD5D2","--accent":"#A85D63","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#eccbc9,#d79fa0,#a85d63,#7c3f45,#4a2225)" } },
+    { name:"Deep Forest", vars:{ "--bg":"#F2F1E8","--ink":"#1C2B20","--ink-soft":"#4A5C4E","--border":"#D6DBC9","--accent":"#2F5233","--accent-ink":"#F2F1E8","--accent-gradient":"linear-gradient(135deg,#a9c0ac,#6b8f71,#2f5233,#1c3620,#0f2213)" } },
+    { name:"Golden Hour", vars:{ "--bg":"#FDF6E8","--ink":"#3A2B0F","--ink-soft":"#6E5A2E","--border":"#EFDFB2","--accent":"#D98E26","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#f6cf8a,#edab4a,#d98e26,#a8650f,#6e3f08)" } },
+    { name:"Slate & Steel", vars:{ "--bg":"#F3F4F6","--ink":"#1F2630","--ink-soft":"#596270","--border":"#D7DBE0","--accent":"#3E5569","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#b7c3cf,#80909e,#3e5569,#28394a,#15222e)" } },
+    { name:"Plum & Blush", vars:{ "--bg":"#FBF0F5","--ink":"#3A1F30","--ink-soft":"#6E5265","--border":"#EFD3E3","--accent":"#7A3B63","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#e3b8d2,#bb77a3,#7a3b63,#54233f,#301226)" } },
+    { name:"Desert Sand", vars:{ "--bg":"#F7F0E2","--ink":"#4A3B26","--ink-soft":"#7D6B4C","--border":"#E8DAB8","--accent":"#C17A3E","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#e8c99a,#d4a564,#c17a3e,#8f5526,#5c3517)" } },
+    { name:"Arctic White", vars:{ "--bg":"#FAFCFE","--ink":"#1C2733","--ink-soft":"#5B6C7A","--border":"#DDE6ED","--accent":"#5E9BBF","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#d6e9f2,#a9d0e3,#5e9bbf,#3a6f8f,#234a5e)" } },
+    { name:"Burgundy Classic", vars:{ "--bg":"#F7EFE9","--ink":"#331418","--ink-soft":"#6B4347","--border":"#E6D2CC","--accent":"#6E1423","--accent-ink":"#F7EFE9","--accent-gradient":"linear-gradient(135deg,#c98a92,#a24552,#6e1423,#4a0e18,#2b080e)" } },
+    { name:"Mustard & Charcoal", vars:{ "--bg":"#1D1C19","--ink":"#F1EADF","--ink-soft":"#B5AC9A","--border":"#3C3A33","--accent":"#D6A623","--accent-ink":"#1D1C19","--accent-gradient":"linear-gradient(135deg,#efd48a,#ddb349,#d6a623,#9c7917,#5c470e)" } },
+    { name:"Lavender Fog", vars:{ "--bg":"#F5F2FA","--ink":"#2E2740","--ink-soft":"#655C7D","--border":"#E1D9F0","--accent":"#7C68B0","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#d6c9ec,#ab97d4,#7c68b0,#584a82,#352d50)" } },
+    { name:"Teal Noir", vars:{ "--bg":"#0F1A1A","--ink":"#E4EFEE","--ink-soft":"#8FAAA8","--border":"#28403E","--accent":"#2FA89B","--accent-ink":"#0F1A1A","--accent-gradient":"linear-gradient(135deg,#7fd4c8,#45b3a3,#2fa89b,#1d6e65,#113f3a)" } },
+    { name:"Coral Reef", vars:{ "--bg":"#FFF8F5","--ink":"#3A241D","--ink-soft":"#785B4F","--border":"#F3DCD2","--accent":"#E8795A","--accent-ink":"#FFFFFF","--accent-gradient":"linear-gradient(135deg,#f6c3ae,#ee9d7d,#e8795a,#b2472c,#7a2f1d)" } },
+    { name:"Olive Grove", vars:{ "--bg":"#F6F4E8","--ink":"#2E2E1A","--ink-soft":"#60603D","--border":"#DFDCB8","--accent":"#6B6E2E","--accent-ink":"#F6F4E8","--accent-gradient":"linear-gradient(135deg,#c6c98f,#9ba052,#6b6e2e,#464822,#2a2b14)" } }
   ];
 
   const root = document.documentElement;
-  const select = document.getElementById("styleSelect");
-  const note = document.getElementById("themeNote");
-  const count = document.getElementById("count");
+  const fontSelect = document.getElementById("fontSelect");
+  const colorSelect = document.getElementById("colorSelect");
+  const fontNote = document.getElementById("fontNote");
+  const colorNote = document.getElementById("colorNote");
+  const fontCount = document.getElementById("fontCount");
+  const colorCount = document.getElementById("colorCount");
 
-  themes.forEach((t, i) => {
+  fonts.forEach((f, i) => {
     const opt = document.createElement("option");
-    opt.value = i;
-    opt.textContent = t.name;
-    select.appendChild(opt);
+    opt.value = i; opt.textContent = f.name;
+    fontSelect.appendChild(opt);
+  });
+  colors.forEach((c, i) => {
+    const opt = document.createElement("option");
+    opt.value = i; opt.textContent = c.name;
+    colorSelect.appendChild(opt);
   });
 
-  function apply(i){
-    const t = themes[i];
-    Object.entries(t.vars).forEach(([k,v]) => root.style.setProperty(k, v));
-    // clear any leftover custom props from a theme that set fewer vars than the previous one
-    ["--radius","--display-weight"].forEach(k => { if(!(k in t.vars)) root.style.removeProperty(k); });
-    select.value = i;
-    note.innerHTML = "<strong>" + t.name + "</strong> — " + t.note;
-    count.textContent = (i+1) + " / " + themes.length;
-    try { localStorage.setItem("style-picker-index", i); } catch(e) {}
+  function applyFont(i){
+    Object.entries(fonts[i].vars).forEach(([k,v]) => root.style.setProperty(k, v));
+    fontSelect.value = i;
+    fontNote.innerHTML = "<strong>Font:</strong> " + fonts[i].name;
+    fontCount.textContent = (i+1) + " / " + fonts.length;
+    try { localStorage.setItem("style-picker-font", i); } catch(e) {}
+    fontIndex = i;
+  }
+  function applyColor(i){
+    Object.entries(colors[i].vars).forEach(([k,v]) => root.style.setProperty(k, v));
+    colorSelect.value = i;
+    colorNote.innerHTML = "<strong>Color:</strong> " + colors[i].name;
+    colorCount.textContent = (i+1) + " / " + colors.length;
+    try { localStorage.setItem("style-picker-color", i); } catch(e) {}
+    colorIndex = i;
   }
 
-  let current = 0;
+  let fontIndex = 0, colorIndex = 0;
   try {
-    const saved = parseInt(localStorage.getItem("style-picker-index"), 10);
-    if(!isNaN(saved) && saved >= 0 && saved < themes.length) current = saved;
+    const sf = parseInt(localStorage.getItem("style-picker-font"), 10);
+    if(!isNaN(sf) && sf >= 0 && sf < fonts.length) fontIndex = sf;
+    const sc = parseInt(localStorage.getItem("style-picker-color"), 10);
+    if(!isNaN(sc) && sc >= 0 && sc < colors.length) colorIndex = sc;
   } catch(e) {}
 
-  select.addEventListener("change", () => apply(parseInt(select.value, 10)));
-  document.getElementById("prev").addEventListener("click", () => apply((current = (current - 1 + themes.length) % themes.length)));
-  document.getElementById("next").addEventListener("click", () => apply((current = (current + 1) % themes.length)));
-  select.addEventListener("change", () => { current = parseInt(select.value, 10); });
+  fontSelect.addEventListener("change", () => applyFont(parseInt(fontSelect.value, 10)));
+  colorSelect.addEventListener("change", () => applyColor(parseInt(colorSelect.value, 10)));
+  document.getElementById("fontPrev").addEventListener("click", () => applyFont((fontIndex - 1 + fonts.length) % fonts.length));
+  document.getElementById("fontNext").addEventListener("click", () => applyFont((fontIndex + 1) % fonts.length));
+  document.getElementById("colorPrev").addEventListener("click", () => applyColor((colorIndex - 1 + colors.length) % colors.length));
+  document.getElementById("colorNext").addEventListener("click", () => applyColor((colorIndex + 1) % colors.length));
 
-  apply(current);
+  applyFont(fontIndex);
+  applyColor(colorIndex);
 </script>
 </body>
 </html>
