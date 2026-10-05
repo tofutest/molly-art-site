@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Items</title>
+<style>
+  :root{
+    --bg:#FFFFFF; --ink:#111111; --muted:#555555; --border:#CCCCCC; --table-head:#F2F2F2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --bg:#111111; --ink:#F2F2F2; --muted:#AAAAAA; --border:#444444; --table-head:#1F1F1F; }
+  }
+  :root[data-theme="dark"]{ --bg:#111111; --ink:#F2F2F2; --muted:#AAAAAA; --border:#444444; --table-head:#1F1F1F; }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Arial,Helvetica,sans-serif;
+    line-height:1.5; padding-inline:20px; padding-block:40px; margin:0;
+  }
+  main{ max-width:780px; margin-inline:auto; }
+  h1{ font-size:1.8rem; margin:0 0 6px; }
+  h2{ font-size:1.1rem; margin:30px 0 10px; }
+  p{ margin:0 0 14px; }
+  .meta{ color:var(--muted); font-size:0.9rem; margin:0 0 30px; }
+  header{ border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:28px; }
+  .flag{
+    display:inline-block; font-size:0.72rem; letter-spacing:0.03em; text-transform:uppercase;
+    border:1px solid var(--ink); border-radius:3px; padding:2px 7px; margin-right:8px;
+  }
+  .table-wrap{ overflow-x:auto; border:1px solid var(--border); margin-bottom:10px; }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:0.92rem; }
+  thead th{
+    text-align:left; font-size:0.78rem; text-transform:uppercase; color:var(--muted);
+    background:var(--table-head); padding:9px 12px; border-bottom:1px solid var(--border);
+  }
+  tbody td{ padding:11px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+  tbody tr:last-child td{ border-bottom:none; }
+  td.page{ font-weight:600; white-space:nowrap; }
+  td.notes{ color:var(--muted); }
+  .callout{ border:1px solid var(--ink); padding:16px 20px; margin:20px 0 36px; }
+  .callout h2{ margin-top:0; }
+  footer{ border-top:1px solid var(--border); padding-top:16px; margin-top:36px; font-size:0.85rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <p class="meta" style="margin-bottom:6px;">MollyArtSite rebuild — review draft — 2026-10-04</p>
+    <h1>Open Items</h1>
+    <p class="meta" style="margin-bottom:0;">
+      Everything the site build assumed, defaulted, or stubbed out so the structure could move
+      fast — collected here instead of blocking on each one individually.
+    </p>
+  </header>
+
+  <div class="callout">
+    <h2>Read this before previewing locally</h2>
+    <p style="margin-bottom:0;">
+      Every page now pulls its header and footer in with a small script (<code>fetch()</code>),
+      so the same markup isn't copy-pasted into 14 files. That only works when the site is served
+      over <code>http</code> — <strong>Live Server</strong>, or GitHub Pages once it's live. Opening
+      a page by double-clicking it (<code>file://</code>) will show it with no header or footer.
+      Always preview through Live Server from here on.
+    </p>
+  </div>
+
+  <h2>Needs a provider decision + account before it does anything</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Page</th><th>What's stubbed</th><th>What's needed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="page">Shop — item pages (Originals &amp; Prints)</td>
+          <td>"Add to cart" is a disabled, greyed-out button.</td>
+          <td class="notes">A checkout provider (Stripe Payment Links / Gumroad / Snipcart / Shopify Buy Button) — costs and tradeoffs were covered in the earlier "Things to Decide" doc.</td>
+        </tr>
+        <tr>
+          <td class="page">Mailing list</td>
+          <td>"Sign up" is disabled; form defaulted to an email-only field, since the deck didn't draw any signup fields.</td>
+          <td class="notes">A mailing-list provider (Mailchimp / Buttondown / Substack).</td>
+        </tr>
+        <tr>
+          <td class="page">Contact</td>
+          <td>Form posts to a placeholder <code>YOUR_FORM_ID</code> endpoint — won't deliver anywhere yet.</td>
+          <td class="notes">A real Formspree (or similar) account and form ID.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Structural defaults picked without asking (deck flagged these as unconfirmed)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Page</th><th>Default chosen</th><th>Alternative, if wrong</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="page">Collection pages</td>
+          <td>Artwork lightbox is an in-page overlay (click a piece, step through with arrows) rather than a separate page per artwork.</td>
+          <td class="notes">Separate static pages per artwork — more files, doesn't scale as well as the collection grows.</td>
+        </tr>
+        <tr>
+          <td class="page">Contact</td>
+          <td>The unlabeled bottom-right control from the sketch was left out entirely rather than guessed at.</td>
+          <td class="notes">Still genuinely unknown — needs the artist's input, not a developer guess.</td>
+        </tr>
+        <tr>
+          <td class="page">Shop — Originals</td>
+          <td>The handwritten "view all originals / prints" links from the sketch were simplified away — just a product grid for now.</td>
+          <td class="notes">Exact wording/grouping still unclear per the deck itself.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Not a decision — just not real yet</h2>
+  <ul>
+    <li>Every image on every page is a CSS-gradient placeholder standing in for a real photo (artwork, portrait, commission example).</li>
+    <li>All copy is placeholder text — bio, Education/Exhibitions/Workshops/Curatorial entries, artwork titles/prices/descriptions, commission intro, contact intro.</li>
+    <li>"Download CV" has no file to link to yet — stubbed the same way as the cart/mailing-list buttons.</li>
+    <li>Social links (Instagram/Facebook/TikTok) point nowhere yet — no profile URLs added.</li>
+    <li>Only one example item page was built for Originals and one for Prints — there's no real inventory, and no defined repeatable way for the artist to add a new artwork listing herself yet (unlike the old site's simple copy-a-block gallery convention — a shop item page carries more fields and a stubbed cart button, so this needs its own answer).</li>
+  </ul>
+
+  <footer>
+    Structure comes from the reviewed Figma sketches; everything above is either genuinely open or
+    just not filled in yet. Nothing here blocks reviewing the site itself — correcting any of it is
+    a small, isolated change.
+  </footer>
+
+</main>
+</body>
+</html>
