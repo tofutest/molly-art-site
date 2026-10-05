@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .hero-image{
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:2px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-start;
+    padding:18px;
+  }
+  .cta-row{ display:flex; justify-content:flex-end; margin-top:22px; }
+  .site-footer{ margin-top:96px; }
+  @media (max-width:480px){
+    .cta-row{ justify-content:stretch; }
+    .cta-row .btn{ width:100%; text-align:center; }
+    .site-footer{ margin-top:64px; }
+  }
+</style>
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main>
+
+  <div class="hero-image art-1" role="img" aria-label="Placeholder for a featured painting — replace with a real artwork photo">
+    <span class="placeholder-tag">Placeholder — featured painting</span>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn btn-primary" href="works.html">Explore available work</a>
+  </div>
+
+</main>
+<footer class="site-footer" data-include="partials/footer.html"></footer>
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Light</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main>
+
+  <!--
+    One example item page standing in for the whole "originals" template — there's no real
+    inventory yet, and no repeatable way for the artist to add a new one defined (see Open Items).
+    Everything here (title, price, medium, size, info, photos) is placeholder content.
+  -->
+  <div class="item-grid">
+    <div class="item-main-image art-1" role="img" aria-label="Placeholder — main artwork photo"></div>
+    <div class="item-info">
+      <h1>Morning Light</h1>
+      <p class="item-price">$ 480</p>
+      <div class="item-meta">
+        <p>Oil on canvas</p>
+        <p>24 × 30 in</p>
+      </div>
+      <p id="item-details" class="item-details">
+        Placeholder additional information — framing notes, condition, shipping details, or
+        anything else the artist wants buyers to know before purchasing.
+      </p>
+      <button class="read-more-toggle" data-target="#item-details">Read more</button>
+      <div>
+        <!--
+          Stub only — no cart/checkout provider has been chosen yet (Stripe Payment Links /
+          Gumroad / Snipcart / Shopify Buy Button — see Open Items). This button does nothing
+          until one is wired in.
+        -->
+        <button class="btn btn-primary" disabled title="Checkout provider not yet connected — see Open Items">Add to cart</button>
+      </div>
+      <div class="thumb-row">
+        <div class="thumb-sm art-1"></div>
+        <div class="thumb-sm art-2"></div>
+        <div class="thumb-sm art-3"></div>
+        <div class="thumb-sm art-4"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<footer class="site-footer" style="margin-top:96px" data-include="partials/footer.html"></footer>
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

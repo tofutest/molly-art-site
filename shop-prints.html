@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prints</title>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .product-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:28px; }
+  .product-grid a{ text-decoration:none; color:var(--ink); }
+  .product-thumb{ width:100%; aspect-ratio:1/1; border-radius:2px; margin-bottom:10px; }
+  .product-grid h3{ font-size:0.98rem; margin:0 0 4px; }
+  .product-grid .price{ font-family: -apple-system, sans-serif; font-size:0.9rem; color:var(--ink-soft); }
+  @media (max-width:760px){ .product-grid{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main>
+
+  <div class="page-header">
+    <h1>Prints</h1>
+  </div>
+
+  <div class="product-grid">
+    <a href="shop-prints-item.html">
+      <div class="product-thumb art-2"></div>
+      <h3>Quiet Harbor (print)</h3>
+      <p class="price">$ 45</p>
+    </a>
+    <a href="shop-prints-item.html">
+      <div class="product-thumb art-5"></div>
+      <h3>Late Afternoon (print)</h3>
+      <p class="price">$ 45</p>
+    </a>
+    <a href="shop-prints-item.html">
+      <div class="product-thumb art-6"></div>
+      <h3>Still Life, Pears (print)</h3>
+      <p class="price">$ 35</p>
+    </a>
+    <a href="shop-prints-item.html">
+      <div class="product-thumb art-1"></div>
+      <h3>Morning Light (print)</h3>
+      <p class="price">$ 45</p>
+    </a>
+  </div>
+
+</main>
+<footer class="site-footer" style="margin-top:96px" data-include="partials/footer.html"></footer>
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

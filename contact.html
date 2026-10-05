@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main>
+
+  <div class="page-header">
+    <h1>Contact</h1>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-side">
+      <p>[Placeholder — a short introduction inviting people to get in touch.]</p>
+      <div class="social-links">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
+      </div>
+      <p><a href="mailing-list.html">Join my mailing list</a></p>
+      <!--
+        Deck flags a small unlabeled control bottom-right of the form, purpose unknown — omitted
+        here rather than guessing. See Open Items.
+      -->
+    </div>
+
+    <!-- Form action is a placeholder — needs a real form-backend account (Formspree or similar, see Open Items) before this delivers anywhere -->
+    <form class="site-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <label>Name
+        <input type="text" name="name" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" required>
+      </label>
+      <label>Subject
+        <input type="text" name="subject" required>
+      </label>
+      <label>Message
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </div>
+
+</main>
+<footer class="site-footer" style="margin-top:96px" data-include="partials/footer.html"></footer>
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

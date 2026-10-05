@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Observational Work</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main>
+
+  <div class="page-header">
+    <h1>Observational work</h1>
+  </div>
+
+  <!--
+    Open question from the deck: artwork lightbox as a separate page per piece, or an overlay
+    here? Defaulted to an overlay (see the Open Items doc) — click any piece to step through the
+    collection without leaving this page.
+  -->
+  <div class="masonry-grid">
+    <a class="lightbox-trigger masonry-item tall art-1" href="#" data-title="Morning Light" data-info="Oil on canvas, 24 × 30 in" data-bg="linear-gradient(135deg, #e8d9c3 0%, #c9a789 25%, #a07a7f 50%, #5c6a86 75%, #2b3147 100%)"></a>
+    <a class="lightbox-trigger masonry-item short art-2" href="#" data-title="Quiet Harbor" data-info="Watercolor, 11 × 14 in" data-bg="linear-gradient(160deg, #cdd8c6 0%, #8fa98f 45%, #46624f 100%)"></a>
+    <a class="lightbox-trigger masonry-item art-3" href="#" data-title="Kitchen Window" data-info="Oil on board, 16 × 20 in" data-bg="linear-gradient(145deg, #e9c9c0 0%, #c98a7a 40%, #6b3d3a 100%)"></a>
+    <a class="lightbox-trigger masonry-item tall art-4" href="#" data-title="Field Study No. 3" data-info="Gouache, 9 × 12 in" data-bg="linear-gradient(150deg, #d8dbe8 0%, #8f97b8 50%, #3c3f5c 100%)"></a>
+    <a class="lightbox-trigger masonry-item art-5" href="#" data-title="Late Afternoon" data-info="Oil on canvas, 20 × 24 in" data-bg="linear-gradient(140deg, #ece0b8 0%, #c7a95c 45%, #6e5420 100%)"></a>
+    <a class="lightbox-trigger masonry-item short art-6" href="#" data-title="Still Life, Pears" data-info="Watercolor, 8 × 10 in" data-bg="linear-gradient(155deg, #e3cfe0 0%, #a97fa3 45%, #52315a 100%)"></a>
+  </div>
+
+</main>
+<footer class="site-footer" style="margin-top:96px" data-include="partials/footer.html"></footer>
+
+<div id="lightbox" class="lightbox-overlay">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-prev" aria-label="Previous artwork">&#8249;</button>
+  <div class="lightbox-body">
+    <div class="lightbox-image"></div>
+    <div class="lightbox-text">
+      <h3 class="lightbox-title"></h3>
+      <p class="lightbox-info"></p>
+    </div>
+  </div>
+  <button class="lightbox-next" aria-label="Next artwork">&#8250;</button>
+</div>
+
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

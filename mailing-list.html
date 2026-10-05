@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mailing List</title>
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main>
+
+  <div class="page-header">
+    <h1>Mailing list</h1>
+  </div>
+
+  <!--
+    The deck left signup fields/content undrawn ("no signup fields were drawn in the notebook").
+    Defaulted to a plain email-only signup — see Open Items. Needs a real mailing-list provider
+    (Mailchimp / Buttondown / Substack) before this does anything.
+  -->
+  <form class="site-form" action="#" method="POST">
+    <label>Email
+      <input type="email" name="email" required placeholder="you@example.com">
+    </label>
+    <button class="btn btn-primary" type="submit" disabled title="Mailing-list provider not yet connected — see Open Items">Sign up</button>
+  </form>
+
+</main>
+<footer class="site-footer" style="margin-top:96px" data-include="partials/footer.html"></footer>
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

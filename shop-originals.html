@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Original Artworks</title>
+<link rel="stylesheet" href="css/site.css">
+<style>
+  .product-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:28px; }
+  .product-grid a{ text-decoration:none; color:var(--ink); }
+  .product-thumb{ width:100%; aspect-ratio:1/1; border-radius:2px; margin-bottom:10px; }
+  .product-grid h3{ font-size:0.98rem; margin:0 0 4px; }
+  .product-grid .price{ font-family: -apple-system, sans-serif; font-size:0.9rem; color:var(--ink-soft); }
+  @media (max-width:760px){ .product-grid{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main>
+
+  <div class="page-header">
+    <h1>Original artworks</h1>
+    <!-- Deck note: handwritten "view all originals / prints" links, exact wording/grouping unclear — see Open Items -->
+  </div>
+
+  <div class="product-grid">
+    <a href="shop-originals-item.html">
+      <div class="product-thumb art-1"></div>
+      <h3>Morning Light</h3>
+      <p class="price">$ 480</p>
+    </a>
+    <a href="shop-originals-item.html">
+      <div class="product-thumb art-2"></div>
+      <h3>Quiet Harbor</h3>
+      <p class="price">$ 320</p>
+    </a>
+    <a href="shop-originals-item.html">
+      <div class="product-thumb art-3"></div>
+      <h3>Kitchen Window</h3>
+      <p class="price">$ 410</p>
+    </a>
+    <a href="shop-originals-item.html">
+      <div class="product-thumb art-4"></div>
+      <h3>Field Study No. 3</h3>
+      <p class="price">$ 260</p>
+    </a>
+  </div>
+
+</main>
+<footer class="site-footer" style="margin-top:96px" data-include="partials/footer.html"></footer>
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
