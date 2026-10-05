@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Picker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,500;0,600;1,500&family=Cormorant+Garamond:wght@500;600&family=EB+Garamond:wght@500;600&family=Libre+Baskerville:wght@400;700&family=Josefin+Sans:wght@500;600&family=Archivo:wght@500;700&family=Sora:wght@500;700&family=Spectral:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg, #FAF9F6);
+    color:var(--ink, #1C1A17);
+    font-family: var(--font-body, -apple-system, "Segoe UI", sans-serif);
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  /* ---------- Picker bar ---------- */
+  .picker-bar{
+    position:sticky; top:0; z-index:100;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    background:#1C1A17; color:#F2F0EA;
+    padding:14px 20px;
+    font-family:-apple-system,"Segoe UI",sans-serif;
+    font-size:0.92rem;
+  }
+  .picker-bar strong{ font-weight:700; }
+  .picker-bar select{
+    font-family:inherit; font-size:0.92rem; padding:7px 10px;
+    border-radius:3px; border:1px solid #514C42; background:#2A2621; color:#F2F0EA;
+  }
+  .picker-bar button{
+    font-family:inherit; font-size:1.1rem; width:32px; height:32px;
+    border-radius:3px; border:1px solid #514C42; background:#2A2621; color:#F2F0EA; cursor:pointer;
+  }
+  .picker-bar button:hover{ background:#3a362f; }
+  .picker-bar .count{ color:#B8B1A3; margin-left:auto; }
+
+  /* ---------- Preview content (mirrors the real site, themed) ---------- */
+  .preview-header{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1000px; margin-inline:auto; padding:22px 24px;
+    border-bottom:1px solid var(--border, #E4E0D8);
+  }
+  .preview-brand{ font-family:var(--font-display); font-weight:700; font-size:1.15rem; }
+  .preview-nav{ display:flex; gap:26px; font-size:0.95rem; }
+
+  main{ max-width:1000px; margin-inline:auto; padding:48px 24px 64px; }
+
+  .hero{
+    width:100%; aspect-ratio:21/9; border-radius:3px;
+    background:var(--accent-gradient);
+    display:flex; align-items:flex-end; padding:16px;
+    margin-bottom:28px;
+  }
+  .hero span{
+    font-family:-apple-system,sans-serif; font-size:0.7rem; letter-spacing:0.04em;
+    background:rgba(0,0,0,0.35); color:#fff; padding:4px 9px; border-radius:3px;
+  }
+
+  h1{ font-family:var(--font-display); font-size:2.1rem; margin:0 0 12px; font-weight:var(--display-weight,700); }
+  .lede{ max-width:60ch; color:var(--ink-soft, #4A463F); margin:0 0 28px; font-size:1.02rem; }
+
+  .btn{
+    display:inline-block; font-family:-apple-system,sans-serif; font-size:0.95rem;
+    padding:13px 26px; border-radius:var(--radius,2px); text-decoration:none;
+    background:var(--accent); color:var(--accent-ink,#fff); border:1px solid var(--accent);
+  }
+
+  .swatch-row{ display:flex; gap:16px; margin:36px 0; }
+  .swatch{ flex:1; aspect-ratio:1/1; border-radius:var(--radius,2px); background:var(--accent-gradient); opacity:0.88; }
+
+  .preview-footer{ text-align:center; margin-top:48px; }
+  .preview-footer .dot{
+    display:inline-block; width:9px; height:9px; border-radius:50%;
+    background:var(--accent); margin:0 5px;
+  }
+
+  .theme-note{
+    max-width:1000px; margin:0 auto 0; padding:0 24px 8px;
+    font-family:-apple-system,sans-serif; font-size:0.85rem; color:var(--ink-soft, #4A463F);
+  }
+</style>
+</head>
+<body>
+
+<div class="picker-bar">
+  <strong>Style Picker</strong>
+  <button id="prev" aria-label="Previous style">‹</button>
+  <select id="styleSelect"></select>
+  <button id="next" aria-label="Next style">›</button>
+  <span class="count" id="count"></span>
+</div>
+
+<p class="theme-note" id="themeNote"></p>
+
+<header class="preview-header">
+  <div class="preview-brand">Molly Kelly</div>
+  <nav class="preview-nav"><span>Home</span><span>Works</span><span>About</span><span>Shop</span><span>Contact</span></nav>
+</header>
+
+<main>
+  <div class="hero"><span>Placeholder — featured painting</span></div>
+  <h1>Original paintings &amp; prints</h1>
+  <p class="lede">
+    Quiet landscapes and still life, worked in oil, watercolor, and mixed media — a sample
+    paragraph so you can judge how body text actually reads in this style, not just headlines.
+  </p>
+  <a class="btn" href="#">Explore available work</a>
+  <div class="swatch-row">
+    <div class="swatch"></div>
+    <div class="swatch"></div>
+    <div class="swatch"></div>
+  </div>
+  <div class="preview-footer">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+</main>
+
+<script>
+  const themes = [
+    { id:"warm-gallery", name:"Warm Gallery", note:"Today's default — warm paper, near-black ink, classic serif.",
+      vars:{ "--bg":"#FAF9F6","--ink":"#1C1A17","--ink-soft":"#4A463F","--border":"#E4E0D8",
+        "--accent":"#1C1A17","--accent-ink":"#FAF9F6",
+        "--accent-gradient":"linear-gradient(135deg,#e8d9c3,#c9a789,#a07a7f,#5c6a86,#2b3147)",
+        "--font-display":"Georgia, serif","--font-body":"-apple-system,sans-serif" } },
+
+    { id:"modern-minimal", name:"Modern Minimal", note:"Pure white, all sans, no color accent at all — just black and whitespace.",
+      vars:{ "--bg":"#FFFFFF","--ink":"#111111","--ink-soft":"#555555","--border":"#DDDDDD",
+        "--accent":"#111111","--accent-ink":"#FFFFFF",
+        "--accent-gradient":"linear-gradient(135deg,#dddddd,#aaaaaa,#777777,#444444,#111111)",
+        "--font-display":"-apple-system,sans-serif","--font-body":"-apple-system,sans-serif","--display-weight":"700" } },
+
+    { id:"soft-pastel", name:"Soft Pastel Studio", note:"Blush-tinted background, rounded friendly type.",
+      vars:{ "--bg":"#FBF1F2","--ink":"#3A2E30","--ink-soft":"#7A6468","--border":"#F0D9DC",
+        "--accent":"#D98FA0","--accent-ink":"#FFFFFF",
+        "--accent-gradient":"linear-gradient(135deg,#f6d9df,#e8b4c2,#d98fa0,#b4e0d9,#8fc6bd)",
+        "--font-display":"Quicksand, sans-serif","--font-body":"Quicksand, sans-serif","--radius":"8px","--display-weight":"700" } },
+
+    { id:"bold-editorial", name:"Bold Editorial", note:"Stark black/white, oversized serif headlines, magazine feel.",
+      vars:{ "--bg":"#FFFFFF","--ink":"#0A0A0A","--ink-soft":"#444444","--border":"#CCCCCC",
+        "--accent":"#C8102E","--accent-ink":"#FFFFFF",
+        "--accent-gradient":"linear-gradient(135deg,#0a0a0a,#3a3a3a,#c8102e,#8a0a1e,#0a0a0a)",
+        "--font-display":"'Playfair Display', serif","--font-body":"-apple-system,sans-serif","--display-weight":"900" } },
+
+    { id:"earth-clay", name:"Earth &amp; Clay", note:"Terracotta and sand, humanist serif, organic warmth.",
+      vars:{ "--bg":"#F6EEE4","--ink":"#3D2B1F","--ink-soft":"#6E5742","--border":"#E3D2BC",
+        "--accent":"#B5602F","--accent-ink":"#FFF8F0",
+        "--accent-gradient":"linear-gradient(135deg,#e8c9a3,#cf9b6c,#b5602f,#8a4522,#5c2d16)",
+        "--font-display":"Lora, serif","--font-body":"Lora, serif","--display-weight":"600" } },
+
+    { id:"midnight-gallery", name:"Midnight Gallery", note:"Dark mode — near-black ground, brass accent, moody and elegant.",
+      vars:{ "--bg":"#15130F","--ink":"#EDE6D6","--ink-soft":"#A99E89","--border":"#3A352B",
+        "--accent":"#C9A24B","--accent-ink":"#15130F",
+        "--accent-gradient":"linear-gradient(135deg,#3a3326,#6b5a34,#c9a24b,#8a7336,#2a2518)",
+        "--font-display":"'Cormorant Garamond', serif","--font-body":"-apple-system,sans-serif","--display-weight":"600" } },
+
+    { id:"botanical-sage", name:"Botanical &amp; Sage", note:"Sage green and cream, calm and nature-leaning.",
+      vars:{ "--bg":"#F3F3EA","--ink":"#30382F","--ink-soft":"#5F6B5A","--border":"#D9DCC9",
+        "--accent":"#6E8C5F","--accent-ink":"#FFFFFF",
+        "--accent-gradient":"linear-gradient(135deg,#d4ddc3,#a9bd92,#6e8c5f,#48603d,#2c3b24)",
+        "--font-display":"'EB Garamond', serif","--font-body":"'EB Garamond', serif","--display-weight":"600" } },
+
+    { id:"ink-parchment", name:"Ink &amp; Parchment", note:"Aged paper, classic book typography, literary and traditional.",
+      vars:{ "--bg":"#EFE6D2","--ink":"#2E2416","--ink-soft":"#5C4F38","--border":"#D6C7A3",
+        "--accent":"#5C4A2E","--accent-ink":"#EFE6D2",
+        "--accent-gradient":"linear-gradient(135deg,#d6c7a3,#b3a076,#8a7650,#5c4a2e,#3a2f1d)",
+        "--font-display":"'Libre Baskerville', serif","--font-body":"'Libre Baskerville', serif","--display-weight":"700" } },
+
+    { id:"coastal-watercolor", name:"Coastal Watercolor", note:"Soft blue washes, airy sans — nods to her watercolor work.",
+      vars:{ "--bg":"#F0F6F6","--ink":"#213235","--ink-soft":"#55696D","--border":"#D2E4E4",
+        "--accent":"#4C8C96","--accent-ink":"#FFFFFF",
+        "--accent-gradient":"linear-gradient(135deg,#cfe6e6,#9cc9cc,#4c8c96,#2f6670,#1c454d)",
+        "--font-display":"'Josefin Sans', sans-serif","--font-body":"'Josefin Sans', sans-serif","--display-weight":"600" } },
+
+    { id:"monochrome-charcoal", name:"Monochrome Charcoal", note:"Pure grayscale, zero color — typography and spacing carry everything.",
+      vars:{ "--bg":"#F4F4F4","--ink":"#1A1A1A","--ink-soft":"#5A5A5A","--border":"#CFCFCF",
+        "--accent":"#1A1A1A","--accent-ink":"#F4F4F4",
+        "--accent-gradient":"linear-gradient(135deg,#dddddd,#aaaaaa,#777777,#444444,#1a1a1a)",
+        "--font-display":"Archivo, sans-serif","--font-body":"Archivo, sans-serif","--display-weight":"700" } },
+
+    { id:"vibrant-contemporary", name:"Vibrant Contemporary", note:"Bright white, one saturated accent, confident geometric sans.",
+      vars:{ "--bg":"#FFFFFF","--ink":"#161616","--ink-soft":"#4D4D4D","--border":"#E2E2E2",
+        "--accent":"#3453DB","--accent-ink":"#FFFFFF",
+        "--accent-gradient":"linear-gradient(135deg,#9db1f2,#5f7fe8,#3453db,#2338a0,#141f5e)",
+        "--font-display":"Sora, sans-serif","--font-body":"Sora, sans-serif","--display-weight":"700" } },
+
+    { id:"rose-ink", name:"Rose &amp; Ink", note:"Dusty rose accent on cream, soft but sophisticated serif.",
+      vars:{ "--bg":"#FAF2EF","--ink":"#352526","--ink-soft":"#6B5355","--border":"#EAD5D2",
+        "--accent":"#A85D63","--accent-ink":"#FFFFFF",
+        "--accent-gradient":"linear-gradient(135deg,#eccbc9,#d79fa0,#a85d63,#7c3f45,#4a2225)",
+        "--font-display":"Spectral, serif","--font-body":"Spectral, serif","--display-weight":"600" } }
+  ];
+
+  const root = document.documentElement;
+  const select = document.getElementById("styleSelect");
+  const note = document.getElementById("themeNote");
+  const count = document.getElementById("count");
+
+  themes.forEach((t, i) => {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = t.name;
+    select.appendChild(opt);
+  });
+
+  function apply(i){
+    const t = themes[i];
+    Object.entries(t.vars).forEach(([k,v]) => root.style.setProperty(k, v));
+    // clear any leftover custom props from a theme that set fewer vars than the previous one
+    ["--radius","--display-weight"].forEach(k => { if(!(k in t.vars)) root.style.removeProperty(k); });
+    select.value = i;
+    note.innerHTML = "<strong>" + t.name + "</strong> — " + t.note;
+    count.textContent = (i+1) + " / " + themes.length;
+    try { localStorage.setItem("style-picker-index", i); } catch(e) {}
+  }
+
+  let current = 0;
+  try {
+    const saved = parseInt(localStorage.getItem("style-picker-index"), 10);
+    if(!isNaN(saved) && saved >= 0 && saved < themes.length) current = saved;
+  } catch(e) {}
+
+  select.addEventListener("change", () => apply(parseInt(select.value, 10)));
+  document.getElementById("prev").addEventListener("click", () => apply((current = (current - 1 + themes.length) % themes.length)));
+  document.getElementById("next").addEventListener("click", () => apply((current = (current + 1) % themes.length)));
+  select.addEventListener("change", () => { current = parseInt(select.value, 10); });
+
+  apply(current);
+</script>
+</body>
+</html>
