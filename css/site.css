@@ -167,6 +167,7 @@ img.card-thumb{ display:block; height:auto; object-fit:cover; background:#fff; }
 .about-grid{ display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap; }
 .about-bio{ flex:1 1 360px; }
 .about-portrait{ flex:0 0 260px; width:260px; aspect-ratio:1/1; border-radius:2px; }
+img.about-portrait{ display:block; height:auto; object-fit:contain; background:#fff; }
 .about-sections{ margin-top:72px; display:flex; flex-direction:column; gap:40px; }
 .about-sections h2{ font-size:1.3rem; margin:0 0 10px; }
 
@@ -216,6 +217,7 @@ img.card-thumb{ display:block; height:auto; object-fit:cover; background:#fff; }
   .masonry-grid{ grid-template-columns:1fr 1fr; }
   .about-grid, .item-grid{ flex-direction:column; }
   .about-portrait, .item-main-image{ width:100%; flex-basis:auto; }
+  .about-bio, .item-info{ flex-basis:auto; }
   .lightbox-body{ flex-direction:column; }
 }
 @media (max-width:480px){
