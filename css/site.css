@@ -51,7 +51,8 @@ a{ color:inherit; }
 
 /* ---------- Footer ---------- */
 .site-footer{ padding:64px 24px 48px; }
-.social-icons{ display:flex; justify-content:center; gap:20px; }
+.social-icons{ display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+@media (max-width:480px){ .social-icons{ gap:8px; } }
 .social-icons a{
   color:var(--ink-soft);
   display:inline-flex;
@@ -119,6 +120,7 @@ main{ max-width:1100px; margin-inline:auto; padding:40px 24px 48px; }
 .card-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:28px; }
 .card-grid a{ text-decoration:none; color:var(--ink); }
 .card-thumb{ width:100%; aspect-ratio:1/1; border-radius:2px; margin-bottom:12px; }
+img.card-thumb{ display:block; height:auto; object-fit:cover; background:#fff; }
 .card-grid h3{ font-size:1.05rem; margin:0; }
 
 /* ---------- Masonry-ish collection grid ---------- */

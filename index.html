@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="css/site.css">
 <style>
   .hero-image{
-    width:100%;
-    aspect-ratio:16/9;
+    display:block;
+    width:auto;
+    max-width:100%;
+    height:auto;
+    max-height:80vh;
+    margin:0 auto;
     border-radius:2px;
-    display:flex;
-    align-items:flex-end;
-    justify-content:flex-start;
-    padding:18px;
   }
   .cta-row{ display:flex; justify-content:flex-end; margin-top:22px; }
   .site-footer{ margin-top:96px; }
@@ -28,9 +28,8 @@
 <div data-include="partials/header.html"></div>
 <main>
 
-  <div class="hero-image art-1" role="img" aria-label="Placeholder for a featured painting — replace with a real artwork photo">
-    <span class="placeholder-tag">Placeholder — featured painting</span>
-  </div>
+  <!-- To change the featured painting: replace images/hero.jpg and update the alt text below -->
+  <img class="hero-image" src="images/hero.jpg" alt="Featured painting: a pale reclining figure in a dark, warm-toned studio" width="1600" height="1568">
 
   <div class="cta-row">
     <a class="btn btn-primary" href="works.html">Explore available work</a>
