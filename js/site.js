@@ -1,6 +1,13 @@
 /* Shared page behaviors: scroll-aware header, read-more toggles, quantity steppers, lightbox. */
 
 document.addEventListener("includes:ready", initScrollHeader);
+
+// PayPal's cart script only fetches the cart count on a fresh load. Coming back from PayPal's
+// cart with the Back button restores a cached copy of the page showing the old count, so
+// reload in that case to pick up any items removed (or added) over on PayPal.
+window.addEventListener("pageshow", function (e) {
+  if (e.persisted && document.querySelector("paypal-cart-button")) location.reload();
+});
 document.addEventListener("DOMContentLoaded", function () {
   initReadMore();
   initQuantitySteppers();

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adding an Original</title>
+<style>
+  :root{
+    --bg:#FFFFFF; --ink:#111111; --muted:#555555; --border:#CCCCCC; --code-bg:#F2F2F2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --bg:#111111; --ink:#F2F2F2; --muted:#AAAAAA; --border:#444444; --code-bg:#1F1F1F; }
+  }
+  :root[data-theme="dark"]{ --bg:#111111; --ink:#F2F2F2; --muted:#AAAAAA; --border:#444444; --code-bg:#1F1F1F; }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Arial,Helvetica,sans-serif;
+    line-height:1.55; padding-inline:20px; padding-block:40px; margin:0;
+  }
+  main{ max-width:780px; margin-inline:auto; }
+  h1{ font-size:1.8rem; margin:0 0 6px; }
+  h2{ font-size:1.1rem; margin:34px 0 10px; }
+  p, li{ margin:0 0 10px; }
+  ol, ul{ padding-left:22px; }
+  .meta{ color:var(--muted); font-size:0.9rem; margin:0; }
+  header{ border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:28px; }
+  code{ background:var(--code-bg); padding:1px 5px; border-radius:3px; font-size:0.9em; overflow-wrap:anywhere; }
+  pre{ background:var(--code-bg); padding:12px 14px; overflow-x:auto; font-size:0.85rem; border-radius:3px; }
+  pre code{ background:none; padding:0; }
+  .callout{ border:1px solid var(--ink); padding:16px 20px; margin:20px 0; }
+  .callout p:last-child{ margin-bottom:0; }
+  footer{ border-top:1px solid var(--border); padding-top:16px; margin-top:36px; font-size:0.85rem; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <p class="meta" style="margin-bottom:6px;">MollyArtSite — how-to</p>
+    <h1>Adding an original artwork to the shop</h1>
+    <p class="meta">
+      Every original artwork has its own page, like <code>original-morning-light.html</code>.
+      To add one, copy an existing page and change the parts marked <code>EDIT</code>.
+      No code knowledge needed. You only change words, numbers and file names.
+    </p>
+  </header>
+
+  <h2>1. Make the PayPal button</h2>
+  <ol>
+    <li>In PayPal, create a new cart product for the artwork (title, price, description).</li>
+    <li>On the <strong>Add to Cart</strong> tab, click <strong>Copy Code</strong>. Keep it handy for step 5.</li>
+  </ol>
+  <p>Each artwork needs its <em>own</em> PayPal product. The code has an ID in it, such as
+    <code>RDM8UR7HDALYG</code>, and that ID is what tells PayPal which painting is being bought.</p>
+
+  <h2>2. Add the photo</h2>
+  <p>Put the photo in the <code>images</code> folder. Use a simple name with no spaces, such as
+    <code>quiet-harbor.jpg</code>.</p>
+
+  <h2>3. Copy a page</h2>
+  <ol>
+    <li>Copy <code>original-morning-light.html</code>. It's the one with a working PayPal button, so
+      it's the best example.</li>
+    <li>Rename the copy <code>original-</code> + the artwork name, all lowercase with dashes instead of
+      spaces. For example: <code>original-quiet-harbor.html</code>.</li>
+  </ol>
+
+  <h2>4. Change each EDIT spot</h2>
+  <p>Open the new page and search for <code>EDIT</code>. Each one sits just above the thing to change:</p>
+  <ul>
+    <li><strong>Title</strong> — appears twice: in <code>&lt;title&gt;</code> near the top (the browser tab)
+      and in <code>&lt;h1&gt;</code>.</li>
+    <li><strong>Main photo</strong> — swap the placeholder line for the <code>&lt;img&gt;</code> line shown
+      in the comment, with your photo's file name and a short description.</li>
+    <li><strong>Price</strong>, <strong>medium and size</strong>, <strong>details for buyers</strong>.</li>
+    <li><strong>Extra photos</strong> — optional. You can leave these as they are.</li>
+  </ul>
+
+  <h2>5. Paste the PayPal code</h2>
+  <p>Find these two lines:</p>
+<pre><code>&lt;!-- PayPal Add to Cart START --&gt;
+...
+&lt;!-- PayPal Add to Cart END --&gt;</code></pre>
+  <p>Delete everything <em>between</em> them and paste the code from step 1 in its place. Keep the
+    START and END lines themselves.</p>
+  <div class="callout">
+    <p><strong>Double-check this one.</strong> If the copied page still has Morning Light's PayPal code,
+      the new page will sell Morning Light. The ID in the pasted code should match the one PayPal
+      showed you for <em>this</em> artwork.</p>
+  </div>
+  <p>Leave the <strong>View Cart</strong> button below it alone. It's the same on every page.</p>
+
+  <h2>6. Add a card to the Originals page</h2>
+  <ol>
+    <li>Open <code>shop-originals.html</code> and find the cards. Each one is an <code>&lt;a href="original-…"&gt;</code>
+      … <code>&lt;/a&gt;</code> block.</li>
+    <li>Copy one whole block and paste it right after the last one.</li>
+    <li>Change the <code>href</code> to your new page's file name, then the title and price.</li>
+  </ol>
+
+  <h2>7. Check it</h2>
+  <ol>
+    <li>Open the Originals page with Live Server and click the new card. It should open the new page.</li>
+    <li>Click <strong>Add to Cart</strong>, then the cart button. The cart should list the
+      <em>new</em> artwork's name and price.</li>
+  </ol>
+
+  <h2>When an artwork sells</h2>
+  <ul>
+    <li>Remove its card from <code>shop-originals.html</code> (delete the whole <code>&lt;a&gt;</code> … <code>&lt;/a&gt;</code> block).</li>
+    <li>Turn off or delete the product in PayPal so no one can buy it twice.</li>
+    <li>The artwork page itself can stay. Without the card, nobody can reach it from the shop.</li>
+  </ul>
+
+  <footer>Same steps work for prints once those pages are split up the same way.</footer>
+
+</main>
+</body>
+</html>

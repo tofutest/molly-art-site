@@ -72,8 +72,8 @@
       <tbody>
         <tr>
           <td class="page">Shop — item pages (Originals &amp; Prints)</td>
-          <td>"Add to cart" is a disabled, greyed-out button.</td>
-          <td class="notes">A checkout provider (Stripe Payment Links / Gumroad / Snipcart / Shopify Buy Button) — costs and tradeoffs were covered in the earlier "Things to Decide" doc.</td>
+          <td>Checkout is PayPal's cart, in sandbox (test) mode. Only Morning Light has a PayPal product; the other originals and the prints page still show a disabled "Add to cart".</td>
+          <td class="notes">A PayPal product per artwork, then switch the <code>/ncp/sb/</code> script line to PayPal's live version on every item page before real sales.</td>
         </tr>
         <tr>
           <td class="page">Mailing list</td>
@@ -119,7 +119,7 @@
     <li>All copy is placeholder text — bio, Education/Exhibitions/Workshops/Curatorial entries, artwork titles/prices/descriptions, commission intro, contact intro.</li>
     <li>"Download CV" has no file to link to yet — stubbed the same way as the cart/mailing-list buttons.</li>
     <li>Social links (Instagram/Facebook/TikTok) point nowhere yet — no profile URLs added.</li>
-    <li>Only one example item page was built for Originals and one for Prints — there's no real inventory, and no defined repeatable way for the artist to add a new artwork listing herself yet (unlike the old site's simple copy-a-block gallery convention — a shop item page carries more fields and a stubbed cart button, so this needs its own answer).</li>
+    <li>Originals now have one plain-HTML page per artwork (<code>original-*.html</code>), added by copying a page and changing its <code>EDIT</code> spots — see <a href="adding-an-original.html">Adding an original</a>. Prints still has a single shared example item page and needs the same split.</li>
   </ul>
 
   <footer>
