@@ -20,6 +20,7 @@
   main{ max-width:780px; margin-inline:auto; }
   h1{ font-size:1.8rem; margin:0 0 6px; }
   h2{ font-size:1.1rem; margin:34px 0 10px; }
+  h3{ font-size:1rem; margin:22px 0 8px; }
   p, li{ margin:0 0 10px; }
   ol, ul{ padding-left:22px; }
   .meta{ color:var(--muted); font-size:0.9rem; margin:0; }
@@ -47,7 +48,9 @@
 
   <h2>1. Make the PayPal button</h2>
   <ol>
-    <li>In PayPal, create a new cart product for the artwork (title, price, description).</li>
+    <li>In PayPal, create a new cart product for the artwork (title, price, description). Turn on
+      shipping address collection and set the quantity to 1. See
+      <a href="#when-a-sale-comes-in">When a sale comes in</a> for why.</li>
     <li>On the <strong>Add to Cart</strong> tab, click <strong>Copy Code</strong>. Keep it handy for step 5.</li>
   </ol>
   <p>Each artwork needs its <em>own</em> PayPal product. The code has an ID in it, such as
@@ -106,12 +109,46 @@
       <em>new</em> artwork's name and price.</li>
   </ol>
 
-  <h2>When an artwork sells</h2>
+  <h2 id="when-a-sale-comes-in">When a sale comes in</h2>
+  <p>The website never sees a sale. Checkout happens on PayPal, so PayPal is what tells you
+    someone bought something.</p>
+
+  <h3>How you'll hear about it</h3>
   <ul>
-    <li>Remove its card from <code>shop-originals.html</code> (delete the whole <code>&lt;a&gt;</code> … <code>&lt;/a&gt;</code> block).</li>
-    <li>Turn off or delete the product in PayPal so no one can buy it twice.</li>
-    <li>The artwork page itself can stay. Without the card, nobody can reach it from the shop.</li>
+    <li><strong>Email:</strong> PayPal emails the address on your PayPal account for every payment.
+      The email shows what was bought, the amount, and the buyer's name and shipping address.</li>
+    <li><strong>PayPal app:</strong> install it on your phone and you'll also get a notification for
+      each sale.</li>
+    <li><strong>Activity page:</strong> every order is listed in PayPal under <em>Activity</em>, with the full
+      details.</li>
+    <li><strong>Choosing what you get:</strong> PayPal's account settings have a notifications section where
+      you can turn emails and app alerts on or off. The exact menu names may differ a little
+      from these.</li>
   </ul>
+
+  <h3>Check these before real sales start</h3>
+  <ul>
+    <li><strong>Shipping address:</strong> when making each PayPal product, make sure it's set to
+      collect a shipping address. Without it you won't know where to send the artwork.</li>
+    <li><strong>Only one can be sold:</strong> look for a stock or inventory option when making the
+      product and set it to 1. PayPal then shows "sold out" to anyone else instead of letting a
+      second person buy the same painting.</li>
+    <li><strong>Test mode sends no real emails:</strong> while the site is still on PayPal's test
+      setup (sandbox), no sale emails reach your real inbox. They appear in PayPal's developer
+      dashboard instead. Real emails start once the site is switched to live PayPal.</li>
+  </ul>
+
+  <h3>After a sale</h3>
+  <ol>
+    <li>Pack and ship the artwork to the address in the PayPal email.</li>
+    <li>In PayPal's Activity page, mark the order as shipped and add the tracking number. The
+      buyer gets notified.</li>
+    <li>Remove the artwork's card from <code>shop-originals.html</code> (delete the whole
+      <code>&lt;a&gt;</code> … <code>&lt;/a&gt;</code> block).</li>
+    <li>If you didn't set the quantity to 1, turn off or delete the product in PayPal so no one
+      can buy it twice.</li>
+  </ol>
+  <p>The artwork's page itself can stay. Without its card, nobody can reach it from the shop.</p>
 
   <footer>Same steps work for prints once those pages are split up the same way.</footer>
 
