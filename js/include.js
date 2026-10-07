@@ -3,10 +3,19 @@
    local file is blocked by the browser under file://. Fires 'includes:ready' on <body> once
    every include on the page has resolved, so other scripts can safely wire up header behavior. */
 (function () {
+  // Sub-pages underline their parent menu item, going by file name: original-*.html and
+  // shop-*.html pages belong to Shop, collection-*.html pages to Works.
+  function sectionOf(page) {
+    if (/^(original-|shop-)/.test(page)) return "shop";
+    if (/^collection-/.test(page)) return "works";
+    return page;
+  }
+
   function markActiveNav(container) {
-    var current = location.pathname.split("/").pop() || "index.html";
+    // GitHub Pages also serves pages without ".html", so compare names with it stripped
+    var current = sectionOf((location.pathname.split("/").pop() || "index.html").replace(/\.html$/, ""));
     container.querySelectorAll(".nav-links a").forEach(function (a) {
-      if (a.getAttribute("href") === current) a.classList.add("active");
+      if (a.getAttribute("href").replace(/\.html$/, "") === current) a.classList.add("active");
     });
   }
 

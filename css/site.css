@@ -49,6 +49,11 @@ a{ color:inherit; }
 .nav-links a:hover{ color:var(--ink-soft); }
 .nav-links a.active{ border-bottom:1.5px solid var(--ink); padding-bottom:3px; }
 
+/* ---------- Breadcrumb (way back up from a sub-page) ---------- */
+.breadcrumb{ font-family: -apple-system, "Segoe UI", sans-serif; font-size:0.85rem; color:var(--ink-soft); margin:0 0 20px; }
+.breadcrumb a{ color:var(--ink-soft); }
+.breadcrumb a:hover{ color:var(--ink); }
+
 /* ---------- Footer ---------- */
 .site-footer{ padding:64px 24px 48px; }
 .social-icons{ display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
